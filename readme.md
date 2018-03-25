@@ -7,9 +7,7 @@ Software in the CODE folder contains all the necessary to convert your Arduino U
 	
 Jan project info: https://janostman.wordpress.com/the-o2-source-code/
 
-## Getting Started
-
-This Github contains the information needed to build and flash an Arduino Minipops shield
+This Github contains the information needed to build and flash an Arduino Minipops shield.
 
 ## Contents
 
@@ -42,7 +40,7 @@ PCB fabrication files.
 ### SCHEMATIC
 
 ```
-Electronic circuit design
+Electronic circuit design.
 ```
 
 ## Authors
