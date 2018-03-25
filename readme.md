@@ -1,8 +1,11 @@
 # NANO - Minipops
 
 Arduino project based in Minipops design by Jan Ostman (DSP Synthesizers) 
+
+The hardware consists in an Arduino Uno including it shield with 9 slide switches, 2 rotary potentiometers and 1 LED. 
+Software in the CODE folder contains all the necessary to convert your Arduino Uno in a Minipops drum box.
 	
-Project info: https://janostman.wordpress.com/the-o2-source-code/
+Jan project info: https://janostman.wordpress.com/the-o2-source-code/
 
 ## Getting Started
 
