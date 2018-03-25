@@ -1,14 +1,14 @@
 # NANO - Minipops
 
-Arduino project based in Minipops design by Jan Ostman (DSP Synthesizers)
+Arduino project based in Minipops design by Jan Ostman (DSP Synthesizers) - Project info: https://janostman.wordpress.com/the-o2-source-code/
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+This Github contains the information needed to build and flash an Arduino Minipops shield
 
 ## Contents
 
-Contents are divided in the following categories
+Contents are divided in the following categories:
 
 ### BOM
 
