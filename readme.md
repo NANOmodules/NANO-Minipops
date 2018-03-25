@@ -1,6 +1,8 @@
 # NANO - Minipops
 
-Arduino project based in Minipops design by Jan Ostman (DSP Synthesizers) - Project info: https://janostman.wordpress.com/the-o2-source-code/
+Arduino project based in Minipops design by Jan Ostman (DSP Synthesizers) 
+	
+Project info: https://janostman.wordpress.com/the-o2-source-code/
 
 ## Getting Started
 
@@ -47,4 +49,13 @@ Electronic circuit design
 ## License
 
 This project is licensed under the **CC BY-NC-SA 4.0** License
+
+## About
+
+NANO Modules.
+
+Instagram: @NANOmodules
+Facebook:  /NANOmodules
+
+València - SPAIN 2018 
 
