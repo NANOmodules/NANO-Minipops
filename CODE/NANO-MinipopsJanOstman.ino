@@ -1,8 +1,16 @@
-// O2 Minipops rhythm box (c) DSP Synthesizers 2016
+// All in the spirit of open-source and open-hardware
+//
+// Minipops rhythm box (c) DSP Synthesizers 2016
+// Code by Jan Ostman
+// 
+// Design by Jorge Gutiérrez
+// 
+// 2018 Spain
+//
 // Free for non commercial use
-
-// http://janostman.wordpress.com
-
+//
+// NANO Modules
+//
 
 #include <avr/interrupt.h>
 #include <avr/io.h>
