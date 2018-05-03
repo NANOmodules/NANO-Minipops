@@ -11,11 +11,18 @@
 //
 // NANO Modules
 //
+// O2 Minipops rhythm box (c) DSP Synthesizers 2016
+// Free for non commercial use
 
-#include <avr/interrupt.h>
+// http://janostman.wordpress.com
+
+
+//#include <WProgram.h>
 #include <avr/io.h>
 #include <avr/pgmspace.h>
+#include <avr/interrupt.h>
 
+#define DEBUG   0
 
 #ifndef cbi
 #define cbi(sfr, bit) (_SFR_BYTE(sfr) &= ~_BV(bit))
@@ -38,15 +45,19 @@
                   
 #define digitalWriteFast(P, V) bitWrite(*digitalPinToPortReg(P), digitalPinToBit(P), (V))
 
+unsigned long millis(void);
+
 const unsigned char PS_128 = (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0);
 
-
-
+// The value will quickly become too large for an int to store
+unsigned long previousMillis = 0; 
+unsigned long currentMillis = 0;
 
 //--------- Ringbuf parameters ----------
 uint8_t Ringbuffer[256];
 uint8_t RingWrite=0;
 uint8_t RingRead=0;
+uint8_t activeRead=1;
 volatile uint8_t RingCount=0;
 volatile uint16_t SFREQ;
 //-----------------------------------------
@@ -655,6 +666,10 @@ ISR(TIMER1_COMPA_vect) {
 void setup() {
   
     OSCCAL=0xFF;
+
+    if (DEBUG){   
+    // initialize serial:
+    Serial.begin(9600);}
     
     //Drum mute inputs
     pinMode(2,INPUT_PULLUP);
@@ -738,9 +753,6 @@ void setup() {
          
 }
 
-
-
-
 void loop() {  
 
   uint16_t samplecntBD,samplecntBG2,samplecntCL,samplecntCW,samplecntCY,samplecntGU,samplecntMA,samplecntQU;
@@ -766,7 +778,7 @@ void loop() {
   uint8_t patselect=13;
   uint8_t patlength=pgm_read_byte_near(patlen + patselect);
   
-  while(1) { 
+  while(1) {
 
     //------ Add current sample word to ringbuffer FIFO --------------------  
         
@@ -819,14 +831,20 @@ void loop() {
 if (digitalReadFast(10)) {
   if (!(tempocnt--)) {
     tempocnt=tempo;
+    /*if (activeRead) {previousMillis = micros();
+    previousMillis = micros();
+    if (DEBUG){
+      Serial.println(previousMillis);} 
+    }*/
+    previousMillis = micros();
     digitalWriteFast(13,HIGH); //Clock out Hi
     uint8_t trig=pgm_read_byte_near(pattern + (patselect<<4) + stepcnt++);
     PORTC=stepcnt;
     uint8_t mask=(PIND>>2)|((PINB&3)<<6);
     trig&=mask;
     if (stepcnt>patlength) stepcnt=0;
-    if (stepcnt==0) digitalWriteFast(12,HIGH); //Reset out Hi
-    if (stepcnt!=0) digitalWriteFast(12,LOW); //Reset out Lo
+    //if (stepcnt==0) digitalWriteFast(12,HIGH);//Reset out DISABLED
+    //if (stepcnt!=0) digitalWriteFast(12,LOW); //Reset out DISABLED
     if (trig & 1) {
       samplepntQU=0;
       samplecntQU=7712;
@@ -860,12 +878,21 @@ if (digitalReadFast(10)) {
       samplecntGU=2816;
     }
   }
-  digitalWriteFast(13,LOW); //Clock out Lo
- }
+    if (micros() - previousMillis >= 30) {
+    digitalWriteFast(13,LOW); //Disable toggle
+    //activeRead = 1; 
+    } else {
+    //activeRead = 0;
+    if(DEBUG){
+    Serial.println(micros());
+    }
+    }
+  }  
 }
+    
 if (!(digitalReadFast(10))) {
-  digitalWriteFast(13,LOW); //Clock out Lo
-  digitalWriteFast(12,LOW); //Reset out Lo
+ digitalWriteFast(13,LOW);  //Clock out LOW
+ //digitalWriteFast(12,LOW); //Reset out DISABLED
   PORTC=0;
   stepcnt=0;
   tempocnt=1;
@@ -890,6 +917,6 @@ if (!(digitalReadFast(10))) {
 //---------------------------------------------------------------
     
   }
- 
 }
+
 
