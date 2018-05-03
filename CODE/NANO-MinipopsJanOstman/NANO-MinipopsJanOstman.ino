@@ -22,7 +22,7 @@
 #include <avr/pgmspace.h>
 #include <avr/interrupt.h>
 
-#define DEBUG   0
+#define DEBUG   1
 
 #ifndef cbi
 #define cbi(sfr, bit) (_SFR_BYTE(sfr) &= ~_BV(bit))
@@ -878,13 +878,13 @@ if (digitalReadFast(10)) {
       samplecntGU=2816;
     }
   }
-    if (micros() - previousMillis >= 30) {
+    if (micros() - previousMillis >= 38) {
     digitalWriteFast(13,LOW); //Disable toggle
     //activeRead = 1; 
     } else {
     //activeRead = 0;
     if(DEBUG){
-    Serial.println(micros());
+    Serial.println(micros()- previousMillis);
     }
     }
   }  
