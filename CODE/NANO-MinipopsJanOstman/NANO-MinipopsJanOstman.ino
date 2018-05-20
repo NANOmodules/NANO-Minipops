@@ -878,7 +878,7 @@ if (digitalReadFast(10)) {
       samplecntGU=2816;
     }
   }
-    if (micros() - previousMillis >= 275) {
+    if (micros() - previousMillis >= 50) {
     digitalWriteFast(13,LOW); //Disable toggle
     activeRead = 1; 
       if(DEBUG){
