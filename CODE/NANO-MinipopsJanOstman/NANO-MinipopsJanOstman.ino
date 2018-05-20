@@ -831,13 +831,10 @@ void loop() {
 if (digitalReadFast(10)) {
   if (!(tempocnt--)) {
     tempocnt=tempo;
-    /*if (activeRead) {previousMillis = micros();
-    previousMillis = micros();
-    if (DEBUG){
-      Serial.println(previousMillis);} 
-    }*/
-    if (activeRead) { previousMillis = micros(); 
-    digitalWriteFast(13,HIGH);} //Clock out Hi
+
+    if (activeRead) { previousMillis = micros(); }
+    digitalWriteFast(13,HIGH); //Clock out Hi
+    
     uint8_t trig=pgm_read_byte_near(pattern + (patselect<<4) + stepcnt++);
     PORTC=stepcnt;
     uint8_t mask=(PIND>>2)|((PINB&3)<<6);
@@ -878,17 +875,12 @@ if (digitalReadFast(10)) {
       samplecntGU=2816;
     }
   }
-    if (micros() - previousMillis >= 50) {
+    if (micros() - previousMillis >= 100) {
+      
     digitalWriteFast(13,LOW); //Disable toggle
     activeRead = 1; 
-      if(DEBUG){
-    Serial.println(10);
-  }  
     } else {
     activeRead = 0;
-      if(DEBUG){
-    Serial.println(0);
-  }  
     }
 /*  if(DEBUG){
     Serial.println(micros()-previousMillis); */
