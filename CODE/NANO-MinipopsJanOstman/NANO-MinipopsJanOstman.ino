@@ -22,7 +22,7 @@
 #include <avr/pgmspace.h>
 #include <avr/interrupt.h>
 
-#define DEBUG   1
+#define DEBUG   0
 
 #ifndef cbi
 #define cbi(sfr, bit) (_SFR_BYTE(sfr) &= ~_BV(bit))
@@ -836,8 +836,8 @@ if (digitalReadFast(10)) {
     if (DEBUG){
       Serial.println(previousMillis);} 
     }*/
-    previousMillis = micros();
-    digitalWriteFast(13,HIGH); //Clock out Hi
+    if (activeRead) { previousMillis = micros(); 
+    digitalWriteFast(13,HIGH);} //Clock out Hi
     uint8_t trig=pgm_read_byte_near(pattern + (patselect<<4) + stepcnt++);
     PORTC=stepcnt;
     uint8_t mask=(PIND>>2)|((PINB&3)<<6);
@@ -878,15 +878,20 @@ if (digitalReadFast(10)) {
       samplecntGU=2816;
     }
   }
-    if (micros() - previousMillis >= 38) {
+    if (micros() - previousMillis >= 275) {
     digitalWriteFast(13,LOW); //Disable toggle
-    //activeRead = 1; 
+    activeRead = 1; 
+      if(DEBUG){
+    Serial.println(10);
+  }  
     } else {
-    //activeRead = 0;
-    if(DEBUG){
-    Serial.println(micros()- previousMillis);
+    activeRead = 0;
+      if(DEBUG){
+    Serial.println(0);
+  }  
     }
-    }
+/*  if(DEBUG){
+    Serial.println(micros()-previousMillis); */
   }  
 }
     
