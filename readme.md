@@ -7,7 +7,7 @@ Software in the CODE folder contains all the necessary to convert your Arduino U
 
 **Click on the image to watch the presentation video!**
 
-[![NANO-Minipops](https://i.imgur.com/2D7elDDl.png)](https://www.youtube.com/watch?v=v7ahzl_3tDo&t=2s "NANO Minipops Presentation")
+[![NANO-Minipops](https://imgur.com/Sr42QD4)](https://www.youtube.com/watch?v=v7ahzl_3tDo&t=2s "NANO Minipops Presentation")
 
 Link of the video: https://www.youtube.com/watch?v=v7ahzl_3tDo&t=2s
 	

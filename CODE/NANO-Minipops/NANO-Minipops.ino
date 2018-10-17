@@ -233,8 +233,7 @@ void loop() {
 if (digitalReadFast(10)) {
   if (!(tempocnt--)) {
     tempocnt=tempo;
-
-    if (activeRead >= 5) { previousMicros = micros(); }
+    
     digitalWriteFast(13,HIGH); //Clock out Hi
     
     uint8_t trig=pgm_read_byte_near(pattern + (patselect<<4) + stepcnt++);
@@ -277,22 +276,23 @@ if (digitalReadFast(10)) {
       samplecntGU=2816;
     }
   }
-  /*
-    if (micros() - previousMicros >= 1000) {
+  
+    if (micros() - previousMicros >= 525) {
       
     digitalWriteFast(13,LOW); //Disable toggle
     activeRead = 0; 
+    previousMicros = micros();
     } else {
-    activeRead++;
     }
-    */
-
-  if(activeRead == 250 && (micros() - previousMicros) >= 500) {
+    
+/*
+  if(activeRead >= 250 && (micros() - previousMicros) >= 500) {
     digitalWriteFast(13,LOW); //Disable toggle
     activeRead = 0; 
+    previousMicros = micros();
   } else {
     activeRead++;
-  }
+  } */
     if(DEBUG){
     Serial.println(micros()-previousMicros); 
     }
