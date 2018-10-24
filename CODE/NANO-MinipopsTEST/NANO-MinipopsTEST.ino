@@ -1,3 +1,14 @@
+// All in the spirit of open-source and open-hardware
+// 
+// Design by Jorge Gutiérrez
+// 
+// 2018 Spain
+//
+// Free for non commercial use
+//
+// NANO Modules
+//
+
 int state;
 
 void setup() {

@@ -1,6 +1,6 @@
 // All in the spirit of open-source and open-hardware
 //
-// Minipops rhythm box (c) DSP Synthesizers 2016
+// Minipops rhythm box
 // Code by Jan Ostman
 // 
 // Design by Jorge Gutiérrez
@@ -11,11 +11,6 @@
 //
 // NANO Modules
 //
-// O2 Minipops rhythm box (c) DSP Synthesizers 2016
-// Free for non commercial use
-
-// http://janostman.wordpress.com
-
 
 #include "includes.h"
 
