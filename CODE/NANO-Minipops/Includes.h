@@ -16,6 +16,10 @@
 
 // http://janostman.wordpress.com
 
+#ifndef Arduino_h
+  #include <Arduino.h>
+#endif
+
 
 // The value will quickly become too large for an int to store
 unsigned long previousMicros = 0; 
